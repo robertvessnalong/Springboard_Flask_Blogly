@@ -1,0 +1,19 @@
+{% extends "base.j2" %}
+{%block title%}Tag Form{%endblock%}
+{%block content%}
+{%block header%}Add A Tag{%endblock%}
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li class="alert alert-danger">{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+   <form>
+      <input type="text" name="name" placeholder="Enter a name for a tag" />
+      <button formaction="/tags" formmethod="GET">Cancel</button>
+      <button formaction="/tags/new" formmethod="POST">Submit</button>
+    </form>
+{%endblock%}

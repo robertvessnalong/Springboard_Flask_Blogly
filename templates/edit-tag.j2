@@ -1,0 +1,24 @@
+{% extends "base.j2" %}
+{%block title%}Edit Tag{%endblock%}
+{%block header%}Edit Tag{%endblock%}
+{%block content%}
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li class="alert alert-danger">{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+     <form>
+        <label for="name">Name:</label>
+        <input id="name" class="form-control" type="text" name="name"/>
+        <button formmethod="GET" type="submit" formaction="/tags/{{ tag.id }}" class="btn btn-secondary">Cancel</button>
+        <button formmethod="POST" type="submit" formaction="/tags/{{tag.id}}/edit" class="btn btn-primary">Submit</button>
+  </form>
+
+
+        
+
+{%endblock%}

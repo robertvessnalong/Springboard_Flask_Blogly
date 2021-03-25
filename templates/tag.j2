@@ -1,0 +1,12 @@
+{% extends "base.j2" %}
+{%block title%}{{tag.name}}{%endblock%}
+{%block header%}{{tag.name}}{%endblock%} 
+{%block content%}
+<form>
+    <button formaction="/tags/{{ tag.id }}/edit" formmethod="GET">Edit Tag</button>
+    <button formaction="/tags/{{ tag.id }}/delete" formmethod="POST">Delete</button>
+</form>
+
+</div>
+</div>
+{% endblock %}

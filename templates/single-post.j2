@@ -1,0 +1,20 @@
+{% extends "base.j2" %}
+{%block title%}{{post.title}}{%endblock%}
+{%block header%}{{post.title}}{%endblock%}
+{%block content%}
+<h3>Content:</h3>
+{{post.content}}
+{% if post.tags %}
+<p>
+  <b>Tags:</b>
+  {% for tag in post.tags %}
+  <a href="/tags/{{ tag.id }}">{{ tag.name }}</a>
+  {% endfor %}
+</p>
+{% endif %}
+<form>
+      <button formaction="/users/{{post.user_id}}" formmethod="GET">Back</button>
+      <button formaction="/posts/{{ post.id }}/edit" formmethod="GET">Edit</button>
+      <button formaction="/posts/{{ post.id }}/delete" formmethod="POST">Delete</button>
+</form>
+{% endblock %}

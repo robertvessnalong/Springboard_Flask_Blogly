@@ -1,0 +1,31 @@
+{% extends "base.j2" %}
+{%block title%}{{user.first_name}} {{user.last_name}}{%endblock%}
+{%block header%}{{user.first_name}} {{user.last_name}}{%endblock%} 
+{%block content%}
+<div classs="container">
+<div class="row">
+<div class="col-lg-6">
+<img src="{{user.image_url}}">
+  <form>
+      <button formaction="/users/{{ user.id }}/edit" formmethod="GET">Edit</button>
+      <button formaction="/users/{{ user.id }}/delete" formmethod="POST">Delete</button>
+    </form>
+</div>
+<div class="col-lg-6">
+<h2>Posts</h2>
+{% if post %}
+<ul>
+    {% for post in post%}
+    <li><a href="/posts/{{post.id}}">{{post.title}}</a></li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>User has not created any post</p>
+{% endif %}
+<a href="/users/{{user.id}}/posts/new">Add New Post </a>
+<a href="/">See More Users</a>
+</div>
+
+</div>
+</div>
+{% endblock %}
