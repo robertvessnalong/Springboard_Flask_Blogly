@@ -17,15 +17,22 @@ db.create_all()
 
 
 @app.route('/')
-def show_user_list():
-    """Show all users in database """
+def show_home_list():
+    """Show home page"""
     post = Post.query.order_by(Post.created_at.desc()).limit(5).all()
+    users = User.query.order_by(User.last_name, User.first_name).limit(3).all()
+    return render_template('home.j2', users=users, post=post)
+
+
+@app.route('/users')
+def show_all_users():
     users = User.query.order_by(User.last_name, User.first_name).all()
-    return render_template('users.j2', users=users, post=post)
+    return render_template('users.j2', users=users)
 
 @app.route('/users/new')
 def show_add_user_form():
-    return render_template('form.j2')
+    tags = Tag.query.all()
+    return render_template('form.j2', tags=tags)
 
 @app.route('/', methods=["POST"])
 def create_user():

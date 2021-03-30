@@ -6,6 +6,17 @@
       <input type="text" name="first_name" required placeholder="First Name" />
       <input type="text" name="last_name" required placeholder="Last Name" />
       <input type="text" name="image_url" placeholder="Image Url" />
+      <div class="container-fluid">
+       {% if tags %}
+            {% for tag in tags%}
+            <input class="m-2" type="checkbox" {% if post in tag.posts %}
+              checked
+              {% endif %}
+              name="tags" 
+              value="{{ tag.id }}">{{tag.name}}</br>
+            {% endfor %}
+          {% endif %}
+      </div>
       <button>Submit</button>
     </form>
 {%endblock%}
